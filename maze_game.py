@@ -197,11 +197,26 @@ class MazeGUI:
             command=lambda: self.update_algorithm("a_star"),
         )
 
+        self.dijkstra_button = tk.Button(
+            self.canvas.master,
+            width=5,
+            text="Dijkstra",
+            background="green",
+            foreground="red",
+            bd=0,
+            activebackground="green",
+            activeforeground="white",
+            font=config.BUTTON_FONT,
+            command=lambda: self.update_algorithm("dijkstra"),
+        )
+
+        self.canvas.create_window(-60, -340, window=self.dijkstra_button)
         self.canvas.create_window(-120, -340, window=self.reset_button)
         self.canvas.create_window(-60, -340, window=self.path_button)
         self.canvas.create_window(0, -340, window=self.dfs_button)
         self.canvas.create_window(60, -340, window=self.bfs_button)
         self.canvas.create_window(120, -340, window=self.a_star_button)
+
 
     def update_score_display(self):
         self.score_turtle.clear()
@@ -264,6 +279,12 @@ class MazeGUI:
             return search.bfs(self.maze_grid, self.opponent_start_pos, treasure_pos)
         elif self.algorithm == "a_star":
             return search.a_star(self.maze_grid, self.opponent_start_pos, treasure_pos)
+        elif self.algorithm == "dijkstra":
+            return search.dijkstra(self.maze_grid, self.opponent_start_pos, treasure_pos)
+        elif self.algorithm == "bellman_ford":
+            return search.bellman_ford(self.maze_grid, self.opponent_start_pos, treasure_pos)
+        elif self.algorithm == "floyd_warshall":
+            return search.floyd_warshall(self.maze_grid)
         else:
             return None
 

@@ -83,3 +83,28 @@ def a_star(board, start_pos, goal_pos):
                     g_values[neighbour] = new_cost
                     f_value = new_cost + heuristic(goal_pos, neighbour)
                     pq.put(neighbour, f_value)
+
+
+def dijkstra(board, start, goal):
+    pq = PriorityQueue()
+    pq.put(start, 0)
+    g_values = {}
+    g_values[start] = 0
+    full_path = []
+
+    while not pq.is_empty():
+        current_cell_pos = pq.get()
+        full_path.append(current_cell_pos)
+        if current_cell_pos == goal:
+            return full_path
+        for direction in ["up", "right", "down", "left"]:
+            row_offset, col_offset = config.offsets[direction]
+            neighbour = (current_cell_pos[0] + row_offset, current_cell_pos[1] + col_offset)
+            new_cost = g_values[current_cell_pos] + 1  # this would be the edge weight in a weighted graph
+            if helpers.is_legal_pos(board, neighbour):
+                # this check only applies to weighted graphs
+                if neighbour not in g_values or new_cost < g_values[neighbour]:
+                    g_values[neighbour] = new_cost
+                    f_value = new_cost
+                    pq.put(neighbour, f_value)
+
