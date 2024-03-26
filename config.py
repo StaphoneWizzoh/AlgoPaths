@@ -17,7 +17,7 @@ SCORE_FONT = ("Courier", 24, "bold")
 GAME_OVER_FONT = ("Courier", 18, "normal")
 SOUND = False
 
-offset = {
+offsets = {
     "right": (0, 1),
     "left": (0, -1),
     "up": (-1, 0),
