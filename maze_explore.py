@@ -1,8 +1,3 @@
-"""
-Python Data Structures - A Game-Based Approach
-Robin Andrews - https://compucademy.net/
-"""
-
 import config
 import turtle
 import search

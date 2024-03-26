@@ -2,14 +2,15 @@ import config
 import turtle
 import random
 
-try:
-    # This is an external library
-    import playsound
+if config.SOUND:
+    try:
+        # This is an external library
+        import playsound
 
-    SOUND = config.SOUND
-except ImportError:
-    print("The `playsound` library is not installed. Please install it to have sound in the game.")
-    SOUND = False
+        SOUND = config.SOUND
+    except ImportError:
+        print("The `playsound` library is not installed. Please install it to have sound in the game.")
+        SOUND = False
 
 import search
 import utilities as helpers
