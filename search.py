@@ -84,6 +84,7 @@ def a_star(board, start_pos, goal_pos):
                     f_value = new_cost + heuristic(goal_pos, neighbour)
                     pq.put(neighbour, f_value)
 
+
 def dijkstra(board, start, goal):
     pq = PriorityQueue()
     pq.put(start, 0)
@@ -106,3 +107,42 @@ def dijkstra(board, start, goal):
                     g_values[neighbour] = new_cost
                     f_value = new_cost
                     pq.put(neighbour, f_value)
+
+
+def bellman_ford(board, start, goal):
+    distance = {}
+    predecessor = {}
+    for vertex in board:
+        distance[vertex] = float('inf')
+        predecessor[vertex] = None
+    distance[start] = 0
+    full_path = []
+
+    for _ in range(len(board) - 1):
+        for u in board:
+            for direction in ["up", "right", "down", "left"]:
+                row_offset, col_offset = config.offsets[direction]
+                v = (u[0] + row_offset, u[1] + col_offset)
+                if helpers.is_legal_pos(board, v):
+                    weight = 1  # assuming unweighted graph
+                    if distance[u] + weight < distance[v]:
+                        distance[v] = distance[u] + weight
+                        predecessor[v] = u
+
+    # check for negative cycles
+    for u in board:
+        for direction in ["up", "right", "down", "left"]:
+            row_offset, col_offset = config.offsets[direction]
+            v = (u[0] + row_offset, u[1] + col_offset)
+            if helpers.is_legal_pos(board, v):
+                weight = 1  # assuming unweighted graph
+                if distance[u] + weight < distance[v]:
+                    raise ValueError("Graph contains a negative cycle")
+
+    # construct path
+    current = goal
+    while current != start:
+        full_path.insert(0, current)
+        current = predecessor[current]
+    full_path.insert(0, start)
+    return full_path
