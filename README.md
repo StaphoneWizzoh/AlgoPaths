@@ -10,8 +10,6 @@ The Path Finding Game allows users to explore different pathfinding algorithms b
 - Breadth-First Search (BFS)
 - A* Search Algorithm
 - Dijkstra's Algorithm
-- Bellman-Ford Algorithm
-- Floyd-Warshall Algorithm
 
 Players can choose their preferred algorithm and observe how it affects the movement of both the player and the opponent within the maze.
 
