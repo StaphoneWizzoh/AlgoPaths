@@ -1,6 +1,6 @@
 # AlgoPaths: A Path Finding Game
 
-This project demonstrates various pathfinding algorithms through an interactive game environment implemented using Python's Turtle graphics library.
+This project demonstrates various pathfinding algorithms through an interactive game environment implemented using Python's Turtle graphics library with python as the main language.
 
 ## Overview
 
